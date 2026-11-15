@@ -1,0 +1,45 @@
+## -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    module = bld.create_ns3_module('aodvv2', ['internet', 'wifi'])
+    module.includes = '.'
+    # The imported AODVv2 implementation uses C++17 template features.
+    module.env.append_value('CXXFLAGS', '-std=c++17')
+
+    module.source = [
+        'model/aodvv2-multi-msg-set.cc',
+        'model/aodvv2-neighbor-set.cc',
+        'model/aodvv2-packet.cc',
+        'model/aodvv2-routing-protocol.cc',
+        'model/aodvv2-rqueue.cc',
+        'model/aodvv2-local-route-set.cc',
+        'model/aodvv2-rerr-set.cc',
+        'model/aodvv2-route-client-set.cc',
+        'model/aodvv2-metric.cc',
+        'helper/aodvv2-helper.cc',
+    ]
+
+    aodvv2_test = bld.create_ns3_module_test_library('aodvv2')
+    aodvv2_test.source = [
+        'test/aodvv2-test.cc',
+    ]
+
+    headers = bld(features='ns3header')
+    headers.module = 'aodvv2'
+    headers.source = [
+        'model/aodvv2-multi-msg-set.h',
+        'model/aodvv2-neighbor-set.h',
+        'model/aodvv2-packet.h',
+        'model/aodvv2-routing-protocol.h',
+        'model/aodvv2-rqueue.h',
+        'model/aodvv2-local-route-set.h',
+        'model/aodvv2-rerr-set.h',
+        'model/aodvv2-route-client-set.h',
+        'model/aodvv2-metric.h',
+        'helper/aodvv2-helper.h',
+    ]
+
+    if bld.env['ENABLE_EXAMPLES']:
+        bld.recurse('examples')
+
+    bld.ns3_python_bindings()

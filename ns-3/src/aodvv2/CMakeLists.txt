@@ -1,0 +1,28 @@
+build_lib(
+  LIBNAME aodvv2
+  SOURCE_FILES
+    helper/aodvv2-helper.cc
+    model/aodvv2-multi-msg-set.cc
+    model/aodvv2-neighbor-set.cc
+    model/aodvv2-packet.cc
+    model/aodvv2-routing-protocol.cc
+    model/aodvv2-rqueue.cc
+    model/aodvv2-local-route-set.cc
+    model/aodvv2-rerr-set.cc
+    model/aodvv2-route-client-set.cc
+    model/aodvv2-metric.cc
+  HEADER_FILES
+    helper/aodvv2-helper.h
+    model/aodvv2-multi-msg-set.h
+    model/aodvv2-neighbor-set.h
+    model/aodvv2-packet.h
+    model/aodvv2-routing-protocol.h
+    model/aodvv2-rqueue.h
+    model/aodvv2-local-route-set.h
+    model/aodvv2-rerr-set.h
+    model/aodvv2-route-client-set.h
+    model/aodvv2-metric.h
+  LIBRARIES_TO_LINK ${libinternet}
+                    ${libwifi}
+  TEST_SOURCES test/aodvv2-test.cc
+)
