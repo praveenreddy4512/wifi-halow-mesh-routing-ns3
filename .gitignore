@@ -1,0 +1,36 @@
+# Build output
+/ns-3/build/
+/ns-3/build-*/
+
+# waf's own runtime/lock files (the pre-patched .waf3-1.8.19-*/ directory
+# itself IS tracked deliberately -- see docs/SOURCE_CODE_STRUCTURE.md)
+/ns-3/.lock-waf*
+/ns-3/*.pyc
+/ns-3/**/*.pyc
+/ns-3/**/__pycache__/
+
+# Simulation outputs (never publish experimental results)
+/ns-3/results/
+/ns-3/**/results/
+*.pcap
+*.pcapng
+flowmon*.xml
+*.csv
+!docs/**/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Editor / OS
+.vscode/
+.DS_Store
+
+# Misc generated
+*.o
+*.os
+*.so
+*.a
+*.log
